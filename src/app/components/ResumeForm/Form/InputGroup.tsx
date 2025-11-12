@@ -129,8 +129,6 @@ const BulletListTextareaGeneral = <T extends string>({
         className={`${INPUT_CLASS_NAME} cursor-text [&>div]:list-item ${
           showBulletPoints ? "pl-7" : "[&>div]:list-['']"
         }`}
-        // Note: placeholder currently doesn't work
-        placeholder={placeholder}
         onChange={(e) => {
           if (e.type === "input") {
             const { innerText } = e.currentTarget as HTMLDivElement;
@@ -251,8 +249,8 @@ const getBulletListStringsFromTextareaValue = (
     // Filter out empty strings
     const nonEmptyStrings = strings.filter((s) => s !== "•");
 
-    let newStrings: string[] = [];
-    for (let string of nonEmptyStrings) {
+    const newStrings: string[] = [];
+    for (const string of nonEmptyStrings) {
       if (string.startsWith("• ")) {
         newStrings.push(string.slice(2));
       } else if (string.startsWith("•")) {
