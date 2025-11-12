@@ -12,11 +12,13 @@ const nextConfig = {
     config.resolve.alias.canvas = false;
     config.resolve.alias.encoding = false;
     
-    // Ignore pdfjs worker files during server-side build
+    // Ignore browser-specific dependencies during server-side build
+    // This prevents DOMMatrix and other browser API errors
     if (isServer) {
       config.externals = config.externals || [];
       config.externals.push({
         canvas: 'canvas',
+        '@react-pdf/renderer': '@react-pdf/renderer',
       });
     }
     
