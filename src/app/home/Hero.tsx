@@ -17,7 +17,7 @@ export function Hero() {
       <div className="pointer-events-none absolute inset-y-0 right-[-20%] hidden w-[60%] translate-y-10 rounded-full bg-[radial-gradient(circle_at_center,_rgba(59,130,246,0.18),_transparent_65%)] blur-3xl lg:block" />
       <div className="pointer-events-none absolute -left-20 top-[18%] hidden h-52 w-52 rounded-full bg-[radial-gradient(circle_at_center,_rgba(147,197,253,0.25),_transparent_60%)] blur-2xl sm:block" />
 
-      <div className="mx-auto grid max-w-7xl gap-12 px-4 pb-16 pt-12 sm:px-6 sm:pb-20 sm:pt-16 lg:grid-cols-[1.1fr_1fr] lg:items-center lg:gap-16 lg:px-8 lg:pt-24">
+      <div className="mx-auto grid max-w-7xl gap-12 px-4 py-6 sm:px-6 sm:py-10 md:py-12 lg:grid-cols-[1.1fr_1fr] lg:items-center lg:gap-16 lg:px-8 lg:py-10">
         {/* Left side - Text content */}
         <div className="relative z-10 space-y-6 text-center lg:text-left">
           <span className="inline-flex items-center gap-2 rounded-full border border-blue-100 bg-blue-50 px-4 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-blue-600 sm:text-xs sm:tracking-[0.35em]">
@@ -65,7 +65,7 @@ export function Hero() {
         </div>
 
         {/* Right side - AutoTypingResume */}
-        <div className="relative z-10 mt-6 flex justify-center sm:mt-10 lg:mt-0 lg:justify-end">
+        <div className="relative z-10 mt-6 flex justify-center sm:mt-10 lg:mt-0 lg:justify-end overflow-x-hidden">
           <div className="relative w-full max-w-sm overflow-hidden rounded-[28px] border border-white/70 bg-white shadow-[0_25px_70px_-30px_rgba(59,130,246,0.65)] sm:max-w-md lg:max-w-xl">
             <div className="absolute inset-x-0 top-0 flex h-10 items-center gap-2 px-5">
               <div className="flex gap-1.5">
@@ -77,7 +77,7 @@ export function Hero() {
                 Live preview
               </span>
             </div>
-            <div className="pt-12">
+            <div className="pt-12 overflow-x-hidden">
               <AutoTypingResume />
             </div>
             <div className="absolute -right-10 bottom-8 hidden rounded-2xl border border-blue-100 bg-white px-4 py-3 shadow-lg shadow-blue-500/10 lg:block">
@@ -94,7 +94,7 @@ export function Hero() {
         </div>
       </div>
 
-      <div className="z-10 mx-auto flex max-w-6xl flex-col gap-5 px-4 pb-6 text-xs text-slate-500 sm:flex-row sm:items-center sm:justify-between sm:gap-4 sm:text-sm">
+      <div className="z-10 mx-auto flex max-w-6xl flex-col gap-5 px-4 pb-2 text-xs text-slate-500 sm:flex-row sm:items-center sm:justify-between sm:gap-4 sm:pb-3 sm:text-sm">
         <div className="inline-flex items-center gap-2 text-center text-slate-600 sm:text-left">
           <svg className="h-5 w-5 text-blue-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
             <path d="M2 12h20" />

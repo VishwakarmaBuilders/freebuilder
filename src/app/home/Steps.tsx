@@ -22,7 +22,7 @@ const STEPS = [
 
 export const Steps = () => {
   return (
-    <section className="bg-gray-50 pt-12 pb-10 sm:pt-16 sm:pb-12">
+    <section className="bg-gray-50 py-6 sm:py-8 md:py-10 lg:py-10">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">

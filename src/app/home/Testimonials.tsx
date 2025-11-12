@@ -83,7 +83,7 @@ const TestimonialCard = ({
 
 export const Testimonials = () => {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-[#f5f7ff] via-white to-white py-16 sm:py-20">
+    <section className="relative overflow-hidden bg-gradient-to-b from-[#f5f7ff] via-white to-white py-6 sm:py-8 md:py-10 lg:py-10">
       <div className="pointer-events-none absolute inset-x-0 top-[-20%] h-[400px] bg-[radial-gradient(circle_at_center,_rgba(59,130,246,0.12),_transparent_60%)]" />
       <div className="pointer-events-none absolute inset-y-0 left-[-10%] hidden h-full w-[45%] rounded-full bg-[radial-gradient(circle_at_center,_rgba(99,102,241,0.12),_transparent_60%)] blur-3xl md:block" />
 

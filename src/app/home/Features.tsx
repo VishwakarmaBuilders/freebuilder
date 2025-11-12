@@ -68,7 +68,7 @@ export const Features = () => {
   };
 
   return (
-    <section className="bg-white py-16">
+    <section className="bg-white py-6 sm:py-8 md:py-10 lg:py-10">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">

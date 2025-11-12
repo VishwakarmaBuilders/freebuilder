@@ -25,7 +25,23 @@ export const AutoTypingResume = () => {
     makeObjectCharIterator(START_HOME_RESUME, END_HOME_RESUME)
   );
   const hasSetEndResume = useRef(false);
-  const { isLg } = useTailwindBreakpoints();
+  const { isLg, isMd, isSm } = useTailwindBreakpoints();
+
+  // Responsive scale based on screen size
+  const getResponsiveScale = () => {
+    if (isLg) return 0.7;
+    if (isMd) return 0.5;
+    if (isSm) return 0.38;
+    return 0.28; // Extra small screens (mobile)
+  };
+
+  // Responsive font size based on screen size
+  const getResponsiveFontSize = () => {
+    if (isLg) return "12";
+    if (isMd) return "11";
+    if (isSm) return "10";
+    return "9";
+  };
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -59,25 +75,27 @@ export const AutoTypingResume = () => {
   }, []);
 
   return (
-    <>
-      <ResumeIframeCSR documentSize="Letter" scale={isLg ? 0.7 : 0.5}>
-        <ResumePDF
-          resume={resume}
-          settings={{
-            ...initialSettings,
-            fontSize: "12",
-            formToHeading: {
-              workExperiences: resume.workExperiences[0].company
-                ? "WORK EXPERIENCE"
-                : "",
-              educations: resume.educations[0].school ? "EDUCATION" : "",
-              projects: resume.projects[0].project ? "PROJECT" : "",
-              skills: resume.skills.featuredSkills[0].skill ? "SKILLS" : "",
-              custom: "CUSTOM SECTION",
-            },
-          }}
-        />
-      </ResumeIframeCSR>
-    </>
+    <div className="w-full max-w-full overflow-x-hidden flex justify-center items-center px-2 sm:px-4">
+      <div className="w-full max-w-full flex justify-center">
+        <ResumeIframeCSR documentSize="Letter" scale={getResponsiveScale()}>
+          <ResumePDF
+            resume={resume}
+            settings={{
+              ...initialSettings,
+              fontSize: getResponsiveFontSize(),
+              formToHeading: {
+                workExperiences: resume.workExperiences[0].company
+                  ? "WORK EXPERIENCE"
+                  : "",
+                educations: resume.educations[0].school ? "EDUCATION" : "",
+                projects: resume.projects[0].project ? "PROJECT" : "",
+                skills: resume.skills.featuredSkills[0].skill ? "SKILLS" : "",
+                custom: "CUSTOM SECTION",
+              },
+            }}
+          />
+        </ResumeIframeCSR>
+      </div>
+    </div>
   );
 };
