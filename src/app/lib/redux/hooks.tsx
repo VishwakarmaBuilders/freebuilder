@@ -55,5 +55,6 @@ export const useSetInitialStore = () => {
       ) as Settings;
       dispatch(setSettings(mergedSettingsState));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 };

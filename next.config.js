@@ -5,7 +5,10 @@ const nextConfig = {
   // building the app. Since pdfjs-dist is only used on client side, we disable
   // the canvas package for webpack
   // https://github.com/mozilla/pdf.js/issues/16214
+  
+  // Use standalone output for deployment
   output: 'standalone',
+  
   webpack: (config, { isServer }) => {
     // Setting resolve.alias to false tells webpack to ignore a module
     // https://webpack.js.org/configuration/resolve/#resolvealias
@@ -15,11 +18,13 @@ const nextConfig = {
     // Ignore browser-specific dependencies during server-side build
     // This prevents DOMMatrix and other browser API errors
     if (isServer) {
+      // Ignore specific modules that require browser APIs
       config.externals = config.externals || [];
-      config.externals.push({
-        canvas: 'canvas',
-        '@react-pdf/renderer': '@react-pdf/renderer',
-      });
+      if (Array.isArray(config.externals)) {
+        config.externals.push({
+          canvas: 'commonjs canvas',
+        });
+      }
     }
     
     return config;
