@@ -6,11 +6,15 @@ const nextConfig = {
   // Transpile ESM packages that need to be compiled
   transpilePackages: ['@react-pdf/renderer'],
   
-  // Disable static optimization for pages using PDF parsing
+  // Turbopack configuration (Next.js 16+)
+  turbopack: {},
+  
+  // Experimental features
   experimental: {
     optimizePackageImports: ['@heroicons/react'],
   },
   
+  // Keep webpack config for backward compatibility
   webpack: (config, { isServer }) => {
     // Setting resolve.alias to false tells webpack to ignore a module
     // https://webpack.js.org/configuration/resolve/#resolvealias

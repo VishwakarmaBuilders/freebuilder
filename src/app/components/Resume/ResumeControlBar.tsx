@@ -1,5 +1,6 @@
 "use client";
 import { useEffect } from "react";
+import type { ReactElement } from "react";
 import { useSetDefaultScale } from "components/Resume/hooks";
 import {
   MagnifyingGlassIcon,
@@ -18,7 +19,7 @@ const ResumeControlBar = ({
   scale: number;
   setScale: (scale: number) => void;
   documentSize: string;
-  document: JSX.Element;
+  document: ReactElement<any>;
   fileName: string;
 }) => {
   const { scaleOnResize, setScaleOnResize } = useSetDefaultScale({
