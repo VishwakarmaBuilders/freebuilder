@@ -6,11 +6,20 @@ const nextConfig = {
   // the canvas package for webpack
   // https://github.com/mozilla/pdf.js/issues/16214
   output: 'standalone',
-  webpack: (config) => {
+  webpack: (config, { isServer }) => {
     // Setting resolve.alias to false tells webpack to ignore a module
     // https://webpack.js.org/configuration/resolve/#resolvealias
     config.resolve.alias.canvas = false;
     config.resolve.alias.encoding = false;
+    
+    // Ignore pdfjs worker files during server-side build
+    if (isServer) {
+      config.externals = config.externals || [];
+      config.externals.push({
+        canvas: 'canvas',
+      });
+    }
+    
     return config;
   },
 };

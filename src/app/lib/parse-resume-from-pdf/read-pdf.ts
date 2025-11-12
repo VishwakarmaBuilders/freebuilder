@@ -1,9 +1,9 @@
-// Getting pdfjs to work is tricky. The following 3 lines would make it work
-// https://stackoverflow.com/a/63486898/7699841
+// Configure pdfjs worker for version 5+
+// Using CDN worker URL to avoid build issues with worker.entry
 import * as pdfjs from "pdfjs-dist";
-// @ts-ignore
-import pdfjsWorker from "pdfjs-dist/build/pdf.worker.entry";
-pdfjs.GlobalWorkerOptions.workerSrc = pdfjsWorker;
+
+// Set worker source to CDN for pdfjs-dist v5+
+pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/5.4.394/pdf.worker.min.mjs`;
 
 import type { TextItem as PdfjsTextItem } from "pdfjs-dist/types/src/display/api";
 import type { TextItem, TextItems } from "lib/parse-resume-from-pdf/types";
