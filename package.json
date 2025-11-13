@@ -1,0 +1,55 @@
+{
+  "name": "open-resume",
+  "version": "0.1.0",
+  "private": true,
+  "engines": {
+    "node": ">=20.0.0",
+    "npm": ">=10.0.0"
+  },
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "lint:fix": "next lint --fix",
+    "test": "jest --watch",
+    "test:ci": "jest --ci",
+    "type-check": "tsc --noEmit",
+    "clean": "rm -rf .next node_modules/.cache"
+  },
+  "dependencies": {
+    "@heroicons/react": "^2.2.0",
+    "@react-pdf/renderer": "^4.2.0",
+    "@reduxjs/toolkit": "^2.5.0",
+    "@vercel/analytics": "^1.4.1",
+    "autoprefixer": "^10.4.20",
+    "next": "16.0.1",
+    "pdfjs-dist": "^5.4.394",
+    "postcss": "^8.4.49",
+    "react": "19.2.0",
+    "react-contenteditable": "^3.3.7",
+    "react-dom": "19.2.0",
+    "react-frame-component": "^5.2.7",
+    "react-icons": "^5.4.0",
+    "react-redux": "^9.2.0",
+    "tailwind-scrollbar": "^3.1.0",
+    "tailwindcss": "^3.4.17"
+  },
+  "devDependencies": {
+    "@tailwindcss/aspect-ratio": "^0.4.2",
+    "@tailwindcss/forms": "^0.5.10",
+    "@tailwindcss/typography": "^0.5.16",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.1.0",
+    "@types/node": "^22.10.2",
+    "@types/react": "^19.0.6",
+    "@types/react-dom": "^19.0.6",
+    "eslint": "^9.17.0",
+    "eslint-config-next": "16.0.1",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "prettier": "^3.4.2",
+    "prettier-plugin-tailwindcss": "^0.6.9",
+    "typescript": "^5.7.2"
+  }
+}
