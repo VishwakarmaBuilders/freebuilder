@@ -22,6 +22,10 @@ export const SkillsForm = () => {
   const showBulletPoints = useAppSelector(selectShowBulletPoints(form));
   const themeColor = useAppSelector(selectThemeColor) || "#38bdf8";
 
+  // Check if this is an empty section (no descriptions and all featured skills empty)
+  const isEmptySection = descriptions.length === 0 && 
+    featuredSkills.every(fs => !fs.skill || fs.skill.trim() === "");
+
   const handleSkillsChange = (field: "descriptions", value: string[]) => {
     dispatch(changeSkills({ field, value }));
   };
@@ -43,6 +47,12 @@ export const SkillsForm = () => {
         <QuickGuide text="List your technical and soft skills relevant to the job you're applying for. Group similar skills together (e.g., Programming Languages, Tools, Frameworks) and optionally highlight your top skills with proficiency levels." />
       }
     >
+      {isEmptySection && (
+        <div className="mb-3 rounded-md bg-blue-50 p-3 text-sm text-blue-800">
+          <p className="font-medium">No data found from imported resume</p>
+          <p className="mt-1 text-blue-700">You can enter your skills here manually.</p>
+        </div>
+      )}
       <div className="col-span-full grid grid-cols-6 gap-3">
         <div className="relative col-span-full">
           <BulletListTextarea

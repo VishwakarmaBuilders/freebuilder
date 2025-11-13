@@ -16,6 +16,9 @@ export const CustomForm = () => {
   const form = "custom";
   const showBulletPoints = useAppSelector(selectShowBulletPoints(form));
 
+  // Check if this is an empty section
+  const isEmptySection = descriptions.length === 0;
+
   const handleCustomChange = (field: "descriptions", value: string[]) => {
     dispatch(changeCustom({ field, value }));
   };
@@ -31,6 +34,12 @@ export const CustomForm = () => {
         <QuickGuide text="Use this custom section to add any additional information that doesn't fit in other sections, such as certifications, publications, volunteer work, languages, or awards." />
       }
     >
+      {isEmptySection && (
+        <div className="mb-3 rounded-md bg-blue-50 p-3 text-sm text-blue-800">
+          <p className="font-medium">No data found from imported resume</p>
+          <p className="mt-1 text-blue-700">You can add custom content here manually.</p>
+        </div>
+      )}
       <div className="col-span-full grid grid-cols-6 gap-3">
         <div className="relative col-span-full">
           <BulletListTextarea

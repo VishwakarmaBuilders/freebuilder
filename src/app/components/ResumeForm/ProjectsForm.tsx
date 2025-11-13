@@ -14,6 +14,12 @@ export const ProjectsForm = () => {
   const dispatch = useAppDispatch();
   const showDelete = projects.length > 1;
 
+  // Check if this is an empty section (all fields empty in first entry)
+  const isEmptySection = projects.length === 1 && 
+    !projects[0].project && 
+    !projects[0].date && 
+    projects[0].descriptions.length === 0;
+
   return (
     <Form
       form="projects"
@@ -22,6 +28,12 @@ export const ProjectsForm = () => {
         <QuickGuide text="Showcase your personal, academic, or professional projects. Include the project name, date, and a brief description of technologies used, your role, and the outcome or impact." />
       }
     >
+      {isEmptySection && (
+        <div className="mb-3 rounded-md bg-blue-50 p-3 text-sm text-blue-800">
+          <p className="font-medium">No data found from imported resume</p>
+          <p className="mt-1 text-blue-700">You can enter your project details here manually.</p>
+        </div>
+      )}
       {projects.map(({ project, date, descriptions }, idx) => {
         const handleProjectChange = (
           ...[

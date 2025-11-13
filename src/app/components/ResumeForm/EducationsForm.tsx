@@ -21,6 +21,14 @@ export const EducationsForm = () => {
   const form = "educations";
   const showBulletPoints = useAppSelector(selectShowBulletPoints(form));
 
+  // Check if this is an empty section (all fields empty in first entry)
+  const isEmptySection = educations.length === 1 && 
+    !educations[0].school && 
+    !educations[0].degree && 
+    !educations[0].gpa && 
+    !educations[0].date && 
+    educations[0].descriptions.length === 0;
+
   return (
     <Form
       form={form}
@@ -29,6 +37,12 @@ export const EducationsForm = () => {
         <QuickGuide text="Add your educational background starting with the most recent degree. Include your school name, degree, major, GPA (if strong), and graduation date. You can also add relevant coursework, honors, or activities." />
       }
     >
+      {isEmptySection && (
+        <div className="mb-3 rounded-md bg-blue-50 p-3 text-sm text-blue-800">
+          <p className="font-medium">No data found from imported resume</p>
+          <p className="mt-1 text-blue-700">You can enter your education details here manually.</p>
+        </div>
+      )}
       {educations.map(({ school, degree, gpa, date, descriptions }, idx) => {
         const handleEducationChange = (
           ...[

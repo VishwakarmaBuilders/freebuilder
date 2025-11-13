@@ -5,6 +5,11 @@ import { extractEducation } from "lib/parse-resume-from-pdf/extract-resume-from-
 import { extractWorkExperience } from "lib/parse-resume-from-pdf/extract-resume-from-sections/extract-work-experience";
 import { extractProject } from "lib/parse-resume-from-pdf/extract-resume-from-sections/extract-project";
 import { extractSkills } from "lib/parse-resume-from-pdf/extract-resume-from-sections/extract-skills";
+import { 
+  initialEducation, 
+  initialWorkExperience, 
+  initialProject 
+} from "lib/redux/resumeSlice";
 
 /**
  * Step 4. Extract resume from sections.
@@ -24,10 +29,22 @@ export const extractResumeFromSections = (
   sections: ResumeSectionToLines
 ): Resume => {
   const { profile } = extractProfile(sections);
-  const { educations } = extractEducation(sections);
-  const { workExperiences } = extractWorkExperience(sections);
-  const { projects } = extractProject(sections);
+  let { educations } = extractEducation(sections);
+  let { workExperiences } = extractWorkExperience(sections);
+  let { projects } = extractProject(sections);
   const { skills } = extractSkills(sections);
+
+  // Ensure all array sections have at least one empty entry
+  // This allows users to manually add data even when parsing finds nothing
+  if (educations.length === 0) {
+    educations = [{ ...initialEducation }];
+  }
+  if (workExperiences.length === 0) {
+    workExperiences = [{ ...initialWorkExperience }];
+  }
+  if (projects.length === 0) {
+    projects = [{ ...initialProject }];
+  }
 
   return {
     profile,

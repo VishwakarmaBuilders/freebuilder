@@ -37,7 +37,7 @@ export function Hero() {
 
           <div className="mx-auto flex max-w-lg flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:justify-start lg:mx-0">
             <button
-              onClick={() => router.push("/resume-builder")}
+              onClick={() => router.push("/builder")}
               className="group inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-blue-600 via-indigo-500 to-purple-500 px-8 py-4 text-sm font-semibold text-white shadow-[0_18px_35px_-18px_rgba(59,130,246,0.7)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_25px_45px_-24px_rgba(79,70,229,0.75)] sm:w-auto"
             >
               Create my resume

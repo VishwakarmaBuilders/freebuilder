@@ -16,7 +16,7 @@ export const TopNavBar = () => {
 
   const navigation = [
     { name: 'Home', href: '/' },
-    { name: 'Builder', href: '/resume-builder' },
+    { name: 'Builder', href: '/builder' },
     { name: 'Resume Parser', href: 'resume-parser' },
     { name: 'FAQ', href: '#faq' },
     { name: 'Contact', href: '#contact' },
@@ -66,7 +66,7 @@ export const TopNavBar = () => {
           {/* CTA Button */}
           <div className="flex items-center space-x-4">
             <Link
-              href="/resume-builder"
+              href="/builder"
               className="hidden md:inline-flex items-center px-5 py-2.5 border border-transparent text-sm font-semibold rounded-md text-white bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-200"
             >
               Create Resume
@@ -108,7 +108,7 @@ export const TopNavBar = () => {
           ))}
           <div className="pt-4 pb-2 border-t border-gray-200">
             <Link
-              href="//resume-builder"
+              href="//builder"
               className="w-full flex items-center justify-center px-4 py-2.5 border border-transparent text-base font-semibold rounded-md text-white bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-200 mx-4"
               onClick={() => setIsOpen(false)}
             >

@@ -1,9 +1,11 @@
 // Configure pdfjs worker for version 5+
-// Using CDN worker URL to avoid build issues with worker.entry
 import * as pdfjs from "pdfjs-dist";
 
-// Set worker source to CDN for pdfjs-dist v5+
-pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/5.4.394/pdf.worker.min.mjs`;
+// Set worker source - using npm package worker
+if (typeof window !== 'undefined') {
+  // Use the worker from node_modules
+  pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
+}
 
 import type { TextItem as PdfjsTextItem } from "pdfjs-dist/types/src/display/api";
 import type { TextItem, TextItems } from "lib/parse-resume-from-pdf/types";

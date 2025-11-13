@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { LockClosedIcon } from "@heroicons/react/24/solid";
 import { XMarkIcon } from "@heroicons/react/24/outline";
-import { parseResumeFromPdf } from "lib/parse-resume-from-pdf";
 import {
   getHasUsedAppBefore,
   saveStateToLocalStorage,
@@ -17,6 +16,7 @@ const defaultFileState = {
   name: "",
   size: 0,
   fileUrl: "",
+  file: null as File | null,
 };
 
 export const ResumeDropzone = ({
@@ -30,7 +30,7 @@ export const ResumeDropzone = ({
 }) => {
   const [file, setFile] = useState(defaultFileState);
   const [isHoveredOnDropzone, setIsHoveredOnDropzone] = useState(false);
-  const [hasNonPdfFile, setHasNonPdfFile] = useState(false);
+  const [hasInvalidFile, setHasInvalidFile] = useState(false);
   const router = useRouter();
 
   const hasFile = Boolean(file.name);
@@ -42,18 +42,20 @@ export const ResumeDropzone = ({
 
     const { name, size } = newFile;
     const fileUrl = URL.createObjectURL(newFile);
-    setFile({ name, size, fileUrl });
+    setFile({ name, size, fileUrl, file: newFile });
     onFileUrlChange(fileUrl);
   };
 
   const onDrop = (event: React.DragEvent<HTMLDivElement>) => {
     event.preventDefault();
     const newFile = event.dataTransfer.files[0];
-    if (newFile.name.endsWith(".pdf")) {
-      setHasNonPdfFile(false);
+    const isValidFile = newFile.name.endsWith(".pdf") || newFile.name.endsWith(".docx");
+    
+    if (isValidFile) {
+      setHasInvalidFile(false);
       setNewFile(newFile);
     } else {
-      setHasNonPdfFile(true);
+      setHasInvalidFile(true);
     }
     setIsHoveredOnDropzone(false);
   };
@@ -72,8 +74,20 @@ export const ResumeDropzone = ({
   };
 
   const onImportClick = async () => {
-    const resume = await parseResumeFromPdf(file.fileUrl);
-    const settings = deepClone(initialSettings);
+    if (!file.file) return;
+    
+    try {
+      // Parse resume based on file type with dynamic imports
+      let resume;
+      if (file.name.endsWith(".pdf")) {
+        const { parseResumeFromPdf } = await import("lib/parse-resume-from-pdf");
+        resume = await parseResumeFromPdf(file.fileUrl);
+      } else {
+        const { parseResumeFromDocx } = await import("lib/parse-resume-from-docx");
+        resume = await parseResumeFromDocx(file.file);
+      }
+      
+      const settings = deepClone(initialSettings);
 
     // Set formToShow settings based on uploaded resume if users have used the app before
     if (getHasUsedAppBefore()) {
@@ -90,8 +104,12 @@ export const ResumeDropzone = ({
       }
     }
 
-    saveStateToLocalStorage({ resume, settings });
-    router.push("/resume-builder");
+      saveStateToLocalStorage({ resume, settings });
+      router.push("/resume-builder");
+    } catch (error) {
+      console.error("Error importing resume:", error);
+      alert("Failed to import resume. Please try again.");
+    }
   };
 
   return (
@@ -132,7 +150,7 @@ export const ResumeDropzone = ({
                 !playgroundView && "text-lg font-semibold"
               )}
             >
-              Browse a pdf file or drop it here
+              Browse a PDF or DOCX file or drop it here
             </p>
             <p className="flex text-sm text-gray-500">
               <LockClosedIcon className="mr-1 mt-1 h-3 w-3 text-gray-400" />
@@ -167,12 +185,12 @@ export const ResumeDropzone = ({
                 <input
                   type="file"
                   className="sr-only"
-                  accept=".pdf"
+                  accept=".pdf,.docx"
                   onChange={onInputChange}
                 />
               </label>
-              {hasNonPdfFile && (
-                <p className="mt-6 text-red-400">Only pdf file is supported</p>
+              {hasInvalidFile && (
+                <p className="mt-6 text-red-400">Only PDF and DOCX files are supported</p>
               )}
             </>
           ) : (

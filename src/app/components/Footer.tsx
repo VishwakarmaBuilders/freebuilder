@@ -76,7 +76,7 @@ export const Footer = ({ showFooter = true }: FooterProps) => {
         </svg>
       ),
       links: [
-        { label: 'Builder', href: '/resume-builder' },
+        { label: 'Builder', href: '/builder' },
         { label: 'Resume Parser', href: '/resume-parser' },
         { label: 'Resume Examples', href: '/examples' },
         { label: 'Cover Letter', href: '/cover-letter' },
@@ -157,7 +157,7 @@ export const Footer = ({ showFooter = true }: FooterProps) => {
             </div>
             <div className="flex flex-col items-center gap-4 sm:flex-row">
               <Link
-                href="/resume-builder"
+                href="/builder"
                 className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-blue-500 via-blue-600 to-indigo-500 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-blue-500/30 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
               >
                 Start building

@@ -11,6 +11,9 @@ export const ProfileForm = () => {
   const dispatch = useAppDispatch();
   const { name, email, phone, url, summary, location } = profile;
 
+  // Check if this is an empty section (all fields empty)
+  const isEmptySection = !name && !email && !phone && !url && !summary && !location;
+
   const handleProfileChange = (field: keyof ResumeProfile, value: string) => {
     dispatch(changeProfile({ field, value }));
   };
@@ -24,6 +27,12 @@ export const ProfileForm = () => {
       <div className="flex justify-end mb-3">
         <LoadExampleButton />
       </div>
+      {isEmptySection && (
+        <div className="mb-3 rounded-md bg-blue-50 p-3 text-sm text-blue-800">
+          <p className="font-medium">No data found from imported resume</p>
+          <p className="mt-1 text-blue-700">You can enter your profile information here manually.</p>
+        </div>
+      )}
       <div className="grid grid-cols-6 gap-3">
         <Input
           label="Name"
