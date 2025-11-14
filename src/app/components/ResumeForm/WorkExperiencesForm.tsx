@@ -68,7 +68,7 @@ export const WorkExperiencesForm = () => {
               label="Company"
               labelClassName="col-span-full"
               name="company"
-              placeholder="Khan Academy"
+              placeholder="TechWave Solutions"
               value={company}
               onChange={handleWorkExperienceChange}
             />
@@ -76,7 +76,7 @@ export const WorkExperiencesForm = () => {
               label="Job Title"
               labelClassName="col-span-4"
               name="jobTitle"
-              placeholder="Software Engineer"
+              placeholder="Frontend Developer"
               value={jobTitle}
               onChange={handleWorkExperienceChange}
             />

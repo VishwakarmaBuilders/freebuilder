@@ -74,7 +74,7 @@ export const EducationsForm = () => {
               label="School"
               labelClassName="col-span-4"
               name="school"
-              placeholder="Cornell University"
+              placeholder="Indian Institute of Technology Delhi"
               value={school}
               onChange={handleEducationChange}
             />
@@ -82,7 +82,7 @@ export const EducationsForm = () => {
               label="Date"
               labelClassName="col-span-2"
               name="date"
-              placeholder="May 2018"
+              placeholder="Aug 2018 - May 2022"
               value={date}
               onChange={handleEducationChange}
             />
@@ -90,7 +90,7 @@ export const EducationsForm = () => {
               label="Degree & Major"
               labelClassName="col-span-4"
               name="degree"
-              placeholder="Bachelor of Science in Computer Engineering"
+              placeholder="B.Tech in Computer Science and Engineering"
               value={degree}
               onChange={handleEducationChange}
             />
@@ -98,7 +98,7 @@ export const EducationsForm = () => {
               label="GPA"
               labelClassName="col-span-2"
               name="gpa"
-              placeholder="3.81"
+              placeholder="8.7/10"
               value={gpa}
               onChange={handleEducationChange}
             />

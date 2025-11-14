@@ -59,7 +59,7 @@ export const ProjectsForm = () => {
             <Input
               name="project"
               label="Project Name"
-              placeholder="OpenResume"
+              placeholder="AI Resume Builder"
               value={project}
               onChange={handleProjectChange}
               labelClassName="col-span-4"
@@ -67,7 +67,7 @@ export const ProjectsForm = () => {
             <Input
               name="date"
               label="Date"
-              placeholder="Winter 2022"
+              placeholder="Spring 2023"
               value={date}
               onChange={handleProjectChange}
               labelClassName="col-span-2"
