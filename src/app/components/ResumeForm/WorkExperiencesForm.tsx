@@ -30,7 +30,7 @@ export const WorkExperiencesForm = () => {
       form="workExperiences"
       addButtonText="Add Job"
       quickGuide={
-        <QuickGuide text="List your work experience in reverse chronological order. Include your job title, company name, dates, and key achievements. Use bullet points to highlight your impact and responsibilities." />
+        <QuickGuide text="Add your work experience starting with the most recent role. Include your job title, company name, employment dates, and 3–5 bullet points that highlight your key achievements, responsibilities, and measurable impact." />
       }
     >
       {isEmptySection && (
